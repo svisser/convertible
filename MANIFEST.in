@@ -1,1 +1,5 @@
 include convertible.py README.md LICENSE
+
+global-exclude *.pyc
+global-exclude .gitignore
+global-exclude .travis.yml

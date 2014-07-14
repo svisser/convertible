@@ -1,13 +1,17 @@
 from distutils.core import setup
 
+requirements = [
+    'jsonpickle==0.7.1'
+]
+
 setup(
     name='convertible',
     version='0.1',
     py_modules = ['convertible'],
-    install_requires = ['jsonpickle'],
+    install_requires = requirements,
     description='Python library for converting object into dictionary/list structures and json',
     long_description='Python library for converting object into dictionary/list structures and json',
-    license='GPLv2',
+    license='GPLv3',
     author='Vladimir Sapronov',
     author_email='vladimir.sapronov@gmail.com',
     maintainer='Vladimir Sapronov',
