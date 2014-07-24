@@ -1,5 +1,6 @@
 import jsonpickle
 import os
+import datetime
 
 class Struct(object):
     def __init__(self, adict):
@@ -26,7 +27,7 @@ def to_dict(value):
         for key, value in cloned.items():
             cloned[key] = to_dict(value)
         return cloned
-    if value is None or isinstance(value, (bool, basestring, str, unicode, int, long, float)):
+    if value is None or isinstance(value, (bool, basestring, str, unicode, int, long, float, datetime.datetime)):
         return value
     result = value.__dict__.copy()
     if hasattr(value, '__public__'):

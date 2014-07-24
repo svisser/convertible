@@ -3,7 +3,9 @@ import tempfile
 
 import os
 
-from convertible import from_json, to_json, read_json, write_json
+from datetime import datetime
+
+from convertible import from_json, to_json, read_json, write_json, to_dict
 
 
 class Klass:
@@ -11,6 +13,15 @@ class Klass:
     def __init__(self, member1, member2):
         self.member1 = member1
         self.member2 = member2
+
+
+class TestDictionary(unittest.TestCase):
+
+    def test_datetime_member(self):
+        datetime_value = datetime(2014, 6, 28, hour=7, minute=58, second=59)
+        obj = Klass("value1", datetime_value)
+        d = to_dict(obj)
+        self.assertEquals(datetime_value, d["member2"])
 
 
 class TestJson(unittest.TestCase):
@@ -59,6 +70,13 @@ class TestJson(unittest.TestCase):
         objects_dict = {"obj1": Klass("value1", 123), "obj2": Klass("value2", 345)}
         actual = to_json(objects_dict)
         expected = '{"obj1": {"member1": "value1", "member2": 123}, "obj2": {"member1": "value2", "member2": 345}}'
+        self.assertEquals(expected, actual)
+
+    def test_datetime_to_json(self):
+        datetime_value = datetime(2014, 6, 28, hour=7, minute=58, second=59)
+        obj = Klass("value1", datetime_value)
+        actual = to_json(obj)
+        expected = '{"member1": "value1", "member2": "2014-06-28 07:58:59"}'
         self.assertEquals(expected, actual)
 
 
