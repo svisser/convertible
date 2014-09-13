@@ -6,7 +6,7 @@ requirements = [
 
 setup(
     name='convertible',
-    version='0.1',
+    version='0.2',
     py_modules = ['convertible'],
     install_requires = requirements,
     description='Python library for converting object into dictionary/list structures and json',

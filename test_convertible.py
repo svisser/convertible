@@ -39,6 +39,14 @@ class TestJson(unittest.TestCase):
         self.assertEquals(345, actual.member2.member1)
         self.assertEquals("value2", actual.member2.member2)
 
+    def test_from_nested_json_list(self):
+        json_text = '{"member1": "value1", "member2": [{"member1": 345, "member2": "value2"}]}'
+        actual = from_json(json_text)
+        self.assertEquals("value1", actual.member1)
+        self.assertEquals(1, len(actual.member2))
+        self.assertEquals(345, actual.member2[0].member1)
+        self.assertEquals("value2", actual.member2[0].member2)
+
     def test_from_list_json(self):
         json_text = '[{"member1": "value1", "member2": 123}, {"member1": "value2", "member2": 345}]'
         actual = from_json(json_text)

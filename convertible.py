@@ -6,8 +6,8 @@ class Struct(object):
     def __init__(self, adict):
         self.__dict__.update(adict)
         for k, v in adict.items():
-            if isinstance(v, dict):
-                self.__dict__[k] = Struct(v)
+            if isinstance(v, (dict, list)):
+                self.__dict__[k] = to_object(v)
 
 def to_object(structure):
     if isinstance(structure, list):
